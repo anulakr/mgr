@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pl" ng-app="anulakrMgr">
+<head>
+  <meta charset="utf-8">
+  <title>Google Phone Gallery</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="app.css" />
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="app.js"></script>
+</head>
+<body ng-controller="SurveyController">
+
+  <div class="questions">
+    <div class="question" ng-repeat="question in questions">
+      <div class="question-row question-header">
+        <div>
+          <span>{{question.label}}. {{question.text}}</span>
+        </div>
+        <div>
+          <span>Stan obecny</span>
+        </div>
+        <div>
+          <span>Stan pożądany</span>
+        </div>
+      </div>
+      <div class="question-row question-option" ng-repeat="option in question.options">
+        <div>
+          <span><strong>{{option.label}})</strong> {{option.text}}</span>
+        </div>
+        <div>
+          <input type="text" ng-model="option.actual" numbers-only>
+        </div>
+        <div>
+          <input type="text" ng-model="option.expected" numbers-only>
+        </div>
+      </div>
+      <div class="question-row question-footer">
+        <div>
+          <span>&nbsp;</span>
+        </div>
+        <div ng-class="{ 'valid-answers': validAnswers(question, 'actual'), 'invalid-answers': !validAnswers(question, 'actual') }">
+          <span>{{ sumAnswers(question, 'actual') }} / 100</span>
+        </div>
+        <div ng-class="{ 'valid-answers': validAnswers(question, 'expected'), 'invalid-answers': !validAnswers(question, 'expected') }">
+          <span>{{ sumAnswers(question, 'expected') }} / 100</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

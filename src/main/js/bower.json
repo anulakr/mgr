@@ -1,0 +1,13 @@
+{
+  "name": "anulakr-mgr",
+  "description": "anulakr-mgr",
+  "version": "0.0.0",
+  "homepage": "https://github.com/anulakr/mgr",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.5.x",
+    "angular-mocks": "1.5.x",
+    "bootstrap": "3.3.x"
+  }
+}
