@@ -1,0 +1,24 @@
+[
+  {
+    "label": "1",
+    "text": "Jaka jest ogólna charakterystyka organizacji",
+    "options": [
+      {
+        "label": "A",
+        "text": "Organizacja jest miejscem osobistego spotkania. Przypomina wielką rodzinę. Ludzie mocno się angażują."
+      },
+      {
+        "label": "B",
+        "text": "Dominującymi cechami organizacji są energia i przedsiębiorczość. Ludzie chętnie podejmują ryzyko."
+      },
+      {
+        "label": "C",
+        "text": "W organizacji liczą się przede wszystkim wyniki. Główną troską jest jak najlepsze wykonywanie zadań. Pracownicy są bardzo ambitni i nastawieni na osiągnięcia."
+      },
+      {
+        "label": "D",
+        "text": "W organizacji obowiązuje ścisła hierarchia i kontrola. Tym, co robią ludzie, zazwyczaj rządzą formalne procedury."
+      }
+    ]
+  }
+]

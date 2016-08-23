@@ -23,7 +23,7 @@ class SurveyController {
     }
 
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE)
-    void post(@PathVariable("company") String company, @RequestBody List<Answer> answers) {
+    void create(@PathVariable("company") String company, @RequestBody List<Answer> answers) {
         service.post(company, answers)
     }
 }
