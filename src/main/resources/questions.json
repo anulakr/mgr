@@ -1,23 +1,133 @@
 [
   {
     "label": "1",
-    "text": "Jaka jest ogólna charakterystyka organizacji",
+    "text": "Jaka jest ogólna charakterystyka firmy w której prcujesz?",
     "options": [
       {
         "label": "A",
-        "text": "Organizacja jest miejscem osobistego spotkania. Przypomina wielką rodzinę. Ludzie mocno się angażują."
+        "text": "Firma jest miejscem osobistego spotkania. Przypomina wielką rodzinę. Ludzie mocno się angażują."
       },
       {
         "label": "B",
-        "text": "Dominującymi cechami organizacji są energia i przedsiębiorczość. Ludzie chętnie podejmują ryzyko."
+        "text": "Dominującymi cechami firmy są energia i przedsiębiorczość. Ludzie chętnie podejmują ryzyko."
       },
       {
         "label": "C",
-        "text": "W organizacji liczą się przede wszystkim wyniki. Główną troską jest jak najlepsze wykonywanie zadań. Pracownicy są bardzo ambitni i nastawieni na osiągnięcia."
+        "text": "W firmie liczą się przede wszystkim wyniki. Główną troską jest jak najlepsze wykonywanie zadań. Pracownicy są bardzo ambitni i nastawieni na osiągnięcia."
       },
       {
         "label": "D",
-        "text": "W organizacji obowiązuje ścisła hierarchia i kontrola. Tym, co robią ludzie, zazwyczaj rządzą formalne procedury."
+        "text": "W firmie obowiązuje ścisła hierarchia i kontrola. Tym, co robią ludzie, zazwyczaj rządzą formalne procedury."
+      }
+    ]
+  },
+  {
+    "label": "2",
+    "text": "Jaki jest styl przywództwa w firmie w której pracujesz?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Przywództwo w firmie powszechnie utożsamia się ze służeniem radą i pomocą oraz roztaczaniem opieki."
+      },
+      {
+        "label": "B",
+        "text": "Przywództwo w firmie powszechnie utożsamia się z przedsiębiorczością, nowatorstwem i podejmowaniem ryzyka."
+      },
+      {
+        "label": "C",
+        "text": "Przywództwo w firmie powszechnie utożsamia się ze stanowczością, ekspansywnością, orientacją na wyniki."
+      },
+      {
+        "label": "D",
+        "text": "Przywództwo w firmie powszechnie utożsamia się z koordynowaniem, sprawnym organizowaniem, stwarzaniem harmonijnych warunków do osiągania dobrych wyników."
+      }
+    ]
+  },
+  {
+    "label": "3",
+    "text": "Jaki jest styl zarządzania pracownikami w firmie w której pracujesz?",
+    "options": [
+      {
+        "label": "A",
+        "text": "W firmie preferuje się pracę zespołową, dąży dopowszechnej zgody i uczestnictwa."
+      },
+      {
+        "label": "B",
+        "text": "W firmie preferuje się samodzielne podejmowanie ryzyka, innowacyjność, swobodę i oryginalność."
+      },
+      {
+        "label": "C",
+        "text": "W firmie preferuje się ostrą rywalizację, stawiane są wysokie wymagania i liczą się przede wszystkim osiągnięcia."
+      },
+      {
+        "label": "D",
+        "text": "W organizacji preferuje się bezpieczeństwo zatrudnienia, podporządkowanie, przewidywalność i niezmienność stosunków."
+      }
+    ]
+  },
+  {
+    "label": "4",
+    "text": "Co zapewnia spójność firmy w której pracujesz?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Spójność firmy jest zapewniona przez lojalność i wzajemne zaufanie. Wysoko ceni się zaangażowanie w sprawy organizacji."
+      },
+      {
+        "label": "B",
+        "text": "Spójność firmy jest zapewniona przez zaangażowanie w innowacje i rozwój. Kładzie się nacisk na szukanie nowych dróg."
+      },
+      {
+        "label": "C",
+        "text": "Spójność firmy jest zapewniona przez nacisk na wyniki i osiąganie celów. Powszechnymi motywami działania są ekspansywność i chęć zwyciężania."
+      },
+      {
+        "label": "D",
+        "text": "Spójność firmy jest zapewniona przez formalne zasady i regulaminy. Najważniejsze jest sprawne funkcjonowanie."
+      }
+    ]
+  },
+  {
+    "label": "5",
+    "text": "Na co kładzie się największy nacisk w firmie w której pracujesz?",
+    "options": [
+      {
+        "label": "A",
+        "text": "W firmie kładzie się nacisk na rozwój osobisty. Obserwuje się duże zaufanie, otwartość i współuczestnictwo."
+      },
+      {
+        "label": "B",
+        "text": "W firmie kładzie się nacisk na zdobywanie nowych zasobów i podejmowanie nowych wyzwań. Ceni się szukanie nowatorskich rozwiązań i możliwości."
+      },
+      {
+        "label": "C",
+        "text": "W firmie kładzie się nacisk na działania konkurencyjne i wyniki. Liczy się osiąganie ambitnych celów i zwyciężanie na rynku."
+      },
+      {
+        "label": "D",
+        "text": "W firmie kładzie się nacisk na trwałość i niezmienność. Ważne są sprawność, kontrola i praca bez zakłóceń."
+      }
+    ]
+  },
+  {
+    "label": "6",
+    "text": "Jakie są kryteria sukcesu w organizacji w firmie w której pracujesz?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Za miarę sukcesu uważa się rozwój zasobów ludzkich, pracę zespołową, zaangażowanie pracowników i troskę o ludzi."
+      },
+      {
+        "label": "B",
+        "text": "Za miarę sukcesu uważa się wytwarzanie najbardziej oryginalnych i nowatorskich produktów oraz osiągnięcie pozycji lidera w dziedzinie innowacyjności."
+      },
+      {
+        "label": "C",
+        "text": "Za miarę sukcesu uważa się wygraną na rynku i pokonywanie konkurentów. Najważniejsze jest osiągnięcie pozycji lidera na rynku."
+      },
+      {
+        "label": "D",
+        "text": "Za miarę sukcesu uważa się sprawność działania. Najważniejsze są: pewność dostaw, dotrzymywanie harmonogramów i niskie koszty produkcji."
       }
     ]
   }
