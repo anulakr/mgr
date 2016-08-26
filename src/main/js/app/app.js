@@ -23,60 +23,29 @@ anulakrMgr.directive('numbersOnly', function () {
   };
 });
 
-anulakrMgr.controller('SurveyController', function SurveyController($scope) {
-  $scope.questions = [
-    {
-      "label": "1",
-      "text": "Jaka jest ogólna charakterystyka firmy w której prcujesz?",
-      "options": [
-        {
-          "label": "A",
-          "text": "Firma jest miejscem osobistego spotkania. Przypomina wielką rodzinę. Ludzie mocno się angażują."
-        },
-        {
-          "label": "B",
-          "text": "Dominującymi cechami firmy są energia i przedsiębiorczość. Ludzie chętnie podejmują ryzyko."
-        },
-        {
-          "label": "C",
-          "text": "W firmie liczą się przede wszystkim wyniki. Główną troską jest jak najlepsze wykonywanie zadań. Pracownicy są bardzo ambitni i nastawieni na osiągnięcia."
-        },
-        {
-          "label": "D",
-          "text": "W firmie obowiązuje ścisła hierarchia i kontrola. Tym, co robią ludzie, zazwyczaj rządzą formalne procedury."
-        }
-      ]
-    },
-    {
-      "label": "2",
-      "text": "Jaki jest styl przywództwa w firmie w której pracujesz?",
-      "options": [
-        {
-          "label": "A",
-          "text": "Przywództwo w firmie powszechnie utożsamia się ze służeniem radą i pomocą oraz roztaczaniem opieki."
-        },
-        {
-          "label": "B",
-          "text": "Przywództwo w firmie powszechnie utożsamia się z przedsiębiorczością, nowatorstwem i podejmowaniem ryzyka."
-        },
-        {
-          "label": "C",
-          "text": "Przywództwo w firmie powszechnie utożsamia się ze stanowczością, ekspansywnością, orientacją na wyniki."
-        },
-        {
-          "label": "D",
-          "text": "Przywództwo w firmie powszechnie utożsamia się z koordynowaniem, sprawnym organizowaniem, stwarzaniem harmonijnych warunków do osiągania dobrych wyników."
-        }
-      ]
+anulakrMgr.factory('questions', function($http){
+  return {
+    list: function(callback){
+      $http
+        .get('/questions')
+        .success(callback);
     }
-  ].map(function (question) {
-    question.options
-      .map(function (option) {
-        option.actual = 0;
-        option.expected = 0;
-        return option;
+  };
+});
+
+anulakrMgr.controller('SurveyController', function SurveyController($scope, questions) {
+
+  questions.list(function(data) {
+    $scope.questions = data
+      .map(function (question) {
+        question.options
+          .map(function (option) {
+            option.actual = 0;
+            option.expected = 0;
+            return option;
+          });
+        return question;
       });
-    return question;
   });
 
   $scope.onlyNumbers = /^\d+$/;
