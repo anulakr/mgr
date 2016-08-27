@@ -1,7 +1,14 @@
-.questions {
+.main-row {
     width: 80%;
     display: table;
     margin: 0 auto;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 }
 
 .question-row {
@@ -57,4 +64,15 @@
 .invalid-answers {
     background: #761c19;
     color: white;
+}
+
+.error {
+    color: #761c19;
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-end;
 }

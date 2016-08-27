@@ -1,6 +1,6 @@
 'use strict';
 
-var anulakrMgr = angular.module('anulakrMgr', []);
+var anulakrMgr = angular.module('anulakrMgr', ['ngResource']);
 
 anulakrMgr.directive('numbersOnly', function () {
   return {
@@ -23,40 +23,76 @@ anulakrMgr.directive('numbersOnly', function () {
   };
 });
 
-anulakrMgr.factory('questions', function($http){
-  return {
-    list: function(callback){
-      $http
-        .get('/questions')
-        .success(callback);
-    }
-  };
-});
+anulakrMgr.factory('Question', ['$resource', function($resource) {
+    return $resource('/questions');
+  }
+]);
 
-anulakrMgr.controller('SurveyController', function SurveyController($scope, questions) {
+anulakrMgr.factory('Survey', ['$resource', function($resource) {
+  return $resource('/:company/surveys');
+}
+]);
 
-  questions.list(function(data) {
+anulakrMgr.controller('SurveyCtrl', function SurveyController($scope, Question, Survey) {
+
+  $scope.surveySent = false;
+  $scope.showErrors = false;
+
+  $scope.comapny = "SoftwareMill";
+
+  Question.query({}, function (data) {
     $scope.questions = data
       .map(function (question) {
         question.options
           .map(function (option) {
-            option.actual = 0;
+            option.current = 0;
             option.expected = 0;
             return option;
           });
+        question.sumAnswers = function (sumType) {
+          return question.options
+            .map(function (option) { return parseInt(option[sumType]) || 0; })
+            .reduce(function (acc, v) { return acc + v; }, 0);
+        };
+        question.validAnswers = function (sumType) {
+          return this.sumAnswers(sumType) == 100;
+        };
+        question.isValid = function () {
+          return this.validAnswers('current') && this.validAnswers('expected');
+        };
         return question;
       });
-  });
+    });
 
-  $scope.onlyNumbers = /^\d+$/;
-
-  $scope.sumAnswers = function (question, sumType) {
-    return question.options
-      .map(function (option) { return parseInt(option[sumType]) || 0; })
-      .reduce(function (acc, v) { return acc + v; }, 0)
+  $scope.validSurvey = function () {
+    return $scope.questions.reduce(function (acc, question) {
+      return acc && question.isValid();
+    }, true)
   };
 
-  $scope.validAnswers  = function (question, sumType) {
-    return $scope.sumAnswers(question, sumType) == 100
-  }
+  $scope.sendSurvey = function () {
+    if ($scope.validSurvey()) {
+      var survey = new Survey({
+        answers: $scope.questions.map(function (question) {
+          return {
+            question: question.label,
+            current: question.options.reduce(function (map, option) {
+              map[option.label] = parseInt(option.current) || 0;
+              return map;
+            }, {}),
+            expected: question.options.reduce(function (map, option) {
+              map[option.label] = parseInt(option.expected) || 0;
+              return map;
+            }, {})
+          };
+        })
+      });
+      survey.$save({company: $scope.comapny}, function () {
+        $scope.surveySent = true;
+      });
+    } else {
+      $scope.showErrors = true;
+    }
+  };
+
 });

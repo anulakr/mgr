@@ -6,11 +6,19 @@
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="app.css" />
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="app.js"></script>
 </head>
-<body ng-controller="SurveyController">
+<body ng-controller="SurveyCtrl">
 
-  <div class="questions">
+<form ng-submit="sendSurvey()" ng-show="!surveySent">
+  <div class="main-row">
+    <div class="header">
+      <p>Hello!</p>
+    </div>
+  </div>
+
+  <div class="main-row">
     <div class="question" ng-repeat="question in questions">
       <div class="question-row question-header">
         <div>
@@ -28,25 +36,45 @@
           <span><strong>{{option.label}})</strong> {{option.text}}</span>
         </div>
         <div>
-          <input type="text" ng-model="option.actual" numbers-only>
+          <input type="text" ng-model="option.current" numbers-only>
         </div>
         <div>
           <input type="text" ng-model="option.expected" numbers-only>
         </div>
       </div>
       <div class="question-row question-footer">
-        <div>
-          <span>&nbsp;</span>
+        <div class="error">
+          <span ng-show="showErrors && !question.isValid()">
+            Odpowiedzi muszą sumować się w kolumnach do 100.
+          </span>
         </div>
-        <div ng-class="{ 'valid-answers': validAnswers(question, 'actual'), 'invalid-answers': !validAnswers(question, 'actual') }">
-          <span>{{ sumAnswers(question, 'actual') }} / 100</span>
+        <div ng-class="{ 'valid-answers': question.validAnswers('current'), 'invalid-answers': !question.validAnswers('current') }">
+          <span>{{ question.sumAnswers('current') }} / 100</span>
         </div>
-        <div ng-class="{ 'valid-answers': validAnswers(question, 'expected'), 'invalid-answers': !validAnswers(question, 'expected') }">
-          <span>{{ sumAnswers(question, 'expected') }} / 100</span>
+        <div ng-class="{ 'valid-answers': question.validAnswers('expected'), 'invalid-answers': !question.validAnswers('expected') }">
+          <span>{{ question.sumAnswers('expected') }} / 100</span>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="main-row">
+    <div class="footer">
+      <div>
+        &nbsp;
+      </div>
+      <div>
+        <input type="submit" value="Wyślij">
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="main-row" ng-show="surveySent">
+  <div class="header">
+    <p>Done!</p>
+  </div>
+</div>
 
 </body>
 </html>
