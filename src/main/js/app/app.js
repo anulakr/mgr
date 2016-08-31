@@ -23,6 +23,11 @@ anulakrMgr.directive('numbersOnly', function () {
   };
 });
 
+anulakrMgr.factory('Company', ['$resource', function($resource) {
+  return $resource('/companies/:companyName', {companyName: '@name'});
+}
+]);
+
 anulakrMgr.factory('Question', ['$resource', function($resource) {
     return $resource('/questions');
   }
@@ -33,14 +38,19 @@ anulakrMgr.factory('Survey', ['$resource', function($resource) {
   }
 ]);
 
-anulakrMgr.controller('SurveyCtrl', function SurveyController($scope, $cookies, Question, Survey) {
+anulakrMgr.controller('SurveyCtrl', function SurveyController($scope, $cookies, $location, Company, Question, Survey) {
 
   $scope.surveySent = $cookies.get('surveySent') || false;
   $scope.showErrors = false;
-
   $scope.instructionsVisible = false;
 
-  $scope.comapny = "SoftwareMill";
+  $scope.validCompany = true;
+  Company.get({companyName: $location.search().company || "unknown"})
+    .$promise.then(function (data) {
+      $scope.company = data.name;
+    }).catch(function (err) {
+      $scope.validCompany = false;
+    });
 
   Question.query({}, function (data) {
     $scope.questions = data
