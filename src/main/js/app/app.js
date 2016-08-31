@@ -1,6 +1,6 @@
 'use strict';
 
-var anulakrMgr = angular.module('anulakrMgr', ['ngResource']);
+var anulakrMgr = angular.module('anulakrMgr', ['ngResource', 'ngCookies']);
 
 anulakrMgr.directive('numbersOnly', function () {
   return {
@@ -29,14 +29,16 @@ anulakrMgr.factory('Question', ['$resource', function($resource) {
 ]);
 
 anulakrMgr.factory('Survey', ['$resource', function($resource) {
-  return $resource('/:company/surveys');
-}
+    return $resource('/:company/surveys');
+  }
 ]);
 
-anulakrMgr.controller('SurveyCtrl', function SurveyController($scope, Question, Survey) {
+anulakrMgr.controller('SurveyCtrl', function SurveyController($scope, $cookies, Question, Survey) {
 
-  $scope.surveySent = false;
+  $scope.surveySent = $cookies.get('surveySent') || false;
   $scope.showErrors = false;
+
+  $scope.instructionsVisible = false;
 
   $scope.comapny = "SoftwareMill";
 
@@ -64,6 +66,10 @@ anulakrMgr.controller('SurveyCtrl', function SurveyController($scope, Question, 
       });
     });
 
+  $scope.showHideInstructions = function () {
+    $scope.instructionsVisible = !$scope.instructionsVisible;
+  };
+
   $scope.validSurvey = function () {
     return $scope.questions.reduce(function (acc, question) {
       return acc && question.isValid();
@@ -88,8 +94,11 @@ anulakrMgr.controller('SurveyCtrl', function SurveyController($scope, Question, 
         })
       });
       survey.$save({company: $scope.comapny}, function () {
-        $scope.surveySent = true;
-      });
+          $scope.surveySent = true;
+          $cookies.put('surveySent', $scope.surveySent, {
+            expires: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000) // +30 days
+          });
+        });
     } else {
       $scope.showErrors = true;
     }

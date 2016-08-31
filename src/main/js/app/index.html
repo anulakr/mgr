@@ -2,11 +2,12 @@
 <html lang="pl" ng-app="anulakrMgr">
 <head>
   <meta charset="utf-8">
-  <title>Google Phone Gallery</title>
+  <title>Ankieta Mgr</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="app.css" />
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="app.js"></script>
 </head>
 <body ng-controller="SurveyCtrl">
@@ -15,18 +16,50 @@
   <div class="main-row">
     <div class="header header-title">
       <div>
-        <span>Ankieta</span>
+        <span>Kwestionariusz oceny kultury organizacji</span>
       </div>
     </div>
     <div class="header header-body">
       <div>
-        <span>
-          Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić.
-          Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić.
-          Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić.
-          Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić.
-          Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić. Proszę wypełnić.
-        </span>
+        <h4>
+          Cel badania
+        </h4>
+        <p>
+          Celem tego badania jest określenie kultury organizacji w firmie w której pracujesz. Badanie jest przeprowadzane
+          w 2 firmach informatycznych o odmiennej strukturze i sposobie zarządzania. Wypełnienie kwestionariusza
+          pozwoli uzyskać obraz tego, jak funkcjonuje Twoja organizacja i jakie wartości ją charakteryzują. Na te pytania
+          nie ma dobrych czy złych odpowiedzi, tak samo jak nie istnieje dobra czy zła kultura.
+        </p>
+        <h4>
+          <a href="#" ng-click="showHideInstructions()">Instrukcja</a>
+        </h4>
+        <div ng-show="instructionsVisible">
+          <p>
+            Na każde z pytań podano cztery odpowiedzi, między które należy rozdzielić 100 punktów w zależności od tego,
+            w jakim stopniu dana odpowiedź odzwierciedla sytuację w Twojej organizacji. Najwięcej punktów przypiszemy
+            odpowiedzi, która jest najbliższa sytuacji panującej w Twojej organizacji.
+          </p>
+          <p>
+            <strong>Stan obecny</strong> (lewa kolumna) - oceniamy tu bieżący stan kultury organizacji, a nie taki
+            jaki chcielibyśmy żeby był, bądź mamy nadzieję, że mógłby być.
+          </p>
+          <p>
+            <strong>Stan pożądany</strong> (prawa kolumna) - dotyczy takiego stanu kultury organizacji, jaki sądzimy
+            że powinien istnieć za pięć lat, by Twoja organizacja odniosła spektakularny sukces i stała się wzorcem
+            dla innych w swojej branży.
+          </p>
+          <p>
+            <strong>Ważne, by suma punktów w obu kolumnach przypisanych odpowiedziom na każde pytanie wynosiła 100.</strong>
+          </p>
+          <h4>
+            Przykład
+          </h4>
+          <p>
+            Jeśli na pytanie 1 odpowiedź A stanowi bardzo bliskie odzwierciedlenie postrzeganej sytuacji, odpowiedzi
+            B i C są do pewnego stopnia trafne, a odpowiedź D jest najmniej zbliżona do stanu faktycznego,
+            można przypisać 55 punktów odpowiedzi A, po 20 punktów odpowiedziom B i C oraz 5 punktów odpowiedzi D.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -81,14 +114,15 @@
 <div class="main-row" ng-show="surveySent">
   <div class="header header-title">
     <div>
-      <span>Dziękuję</span>
+      <span>Dziękuję za wypełnienie ankiety</span>
     </div>
   </div>
   <div class="header header-body">
     <div>
-        <span>
-          Dziękuję. Dziękuję. Dziękuję. Dziękuję. Dziękuję. Dziękuję. Dziękuję. Dziękuję. Dziękuję. Dziękuję.
-        </span>
+        <p>
+          Jeśli jesteś zainteresowany jej wynikami, daj mi proszę znać poprzez kanał, którym otrzymałeś oformację
+          o badaniu. Poinformuję Cię po wykonaniu analizy kultury organizacji w której pracujesz ☺
+        </p>
     </div>
   </div>
 </div>
