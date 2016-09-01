@@ -103,7 +103,7 @@ anulakrMgr.controller('SurveyCtrl', function SurveyController($scope, $cookies, 
           };
         })
       });
-      survey.$save({company: $scope.comapny}, function () {
+      survey.$save({company: $scope.company}, function () {
           $scope.surveySent = true;
           $cookies.put('surveySent', $scope.surveySent, {
             expires: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000) // +30 days
