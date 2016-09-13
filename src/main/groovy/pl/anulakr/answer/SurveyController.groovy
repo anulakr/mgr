@@ -12,7 +12,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET
 import static org.springframework.web.bind.annotation.RequestMethod.POST
 
 @RestController
-@RequestMapping(path = "/{company}/surveys")
 @CompileStatic
 class SurveyController {
 
@@ -23,13 +22,12 @@ class SurveyController {
         this.service = service
     }
 
-
-    @RequestMapping(method = GET, produces = "text/csv")
+    @RequestMapping(path = "/surveys", method = GET, produces = "text/csv")
     String csv() {
         return service.csv(",")
     }
 
-    @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/{company}/surveys", method = POST, consumes = APPLICATION_JSON_VALUE)
     void create(@PathVariable("company") String company, @RequestBody Survey survey) {
         service.post(company, survey.answers)
     }
