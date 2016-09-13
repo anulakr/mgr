@@ -28,4 +28,10 @@ class SurveyService {
             .map({Survey survey -> survey.id})
     }
 
+    String csv(String separator) {
+        return surveys.findAll()
+            .collect { it.csvRow(separator) }
+            .join("\n")
+    }
+
 }

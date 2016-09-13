@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE
+import static org.springframework.web.bind.annotation.RequestMethod.GET
 import static org.springframework.web.bind.annotation.RequestMethod.POST
 
 @RestController
@@ -20,6 +21,12 @@ class SurveyController {
     @Autowired
     SurveyController(SurveyService service) {
         this.service = service
+    }
+
+
+    @RequestMapping(method = GET, produces = "text/csv")
+    String csv() {
+        return service.csv(",")
     }
 
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE)

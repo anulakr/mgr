@@ -15,9 +15,12 @@ class Survey {
 
     List<Answer> answers
 
+    String csvRow(String separator) {
+        return ([id, company] + answers.collect {it.csvRow(separator)}).join(separator)
+    }
+
 }
 
-@CompileStatic
 class Answer {
 
     String question
@@ -28,5 +31,11 @@ class Answer {
 
     boolean isValid() {
         return current.values().sum() == 100 && expected.values().sum() == 100
+    }
+
+    String csvRow(String separator) {
+        return ([question] + [current, expected].collect { map ->
+            map.keySet().sort().collect { key -> map.getOrDefault(key, 0).toString() }
+        }.inject([], {acc, el -> acc + el})).join(separator)
     }
 }
